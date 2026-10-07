@@ -10,3 +10,4 @@ Route::get('/', function () {
 });
 
 Route::get('/cadastro_usuario', [UsuarioController::class, 'cadastro_html'])->name('cadastro_usuario');
+
