@@ -25,20 +25,42 @@
     <div>
         <h6 style="margin-left: 210px; margin-top: -60px;">SERVIÇO SOCIAL <br>DA INDÚTRIA</h6>
     </div>
-    <ul class="nav nav-pills">
-        <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Active</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
-    </ul>
+
+    <nav class="navbar nav-pills navbar-expand-lg bg-body-danger"
+        style="background-color: rgb(253, 1, 1); padding: -5rem; width: 26%; left:69%; top: -3rem; border-radius: 30px; border: 1px solid rgb(255, 0, 0);">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <div class="justify-content-center d-flex">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active fonte" style="background-color: rgb(252, 252, 252);" aria-current="page"
+                                href="#">Reserva professor</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fonte" style="color: white;" href="#">Reserva aluno</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fonte" style="color: white;" href="#">Calendário</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link fonte" style="color: white;" href="#">Inicio</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+
+
 
     <br>
 
@@ -89,7 +111,8 @@
             <label for="exampleFormControlInput1" class="form-label">Turma</label>
             <div class="row">
                 <div class="col-8">
-                    <input type="text" class="form-control" placeholder="Nome da turma" aria-label="Nome da turma">
+                    <input type="text" class="form-control" placeholder="Nome da turma"
+                        aria-label="Nome da turma">
                 </div>
             </div>
         </div>
