@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Professor;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class ProfessorController extends Controller
 {
@@ -17,17 +16,13 @@ class ProfessorController extends Controller
     {
 
         $request->validate([
-            'nome' => 'required|string|max:255',
-            'email' => 'required|email|unique:professor',
-            'senha' => 'required|string',
+            'materia' => 'required|string|max:255'
         ]);
 
         try {
 
             $professor = new Professor;
-            $professor->nome = $request->nome;
-            $professor->email = $request->email;
-            $professor->senha = Hash::make($request->senha);
+            $professor->materia = $request->materia;
             $professor->save();
 
             return response()->json(['message' => 'Professor cadastrado com sucesso!', 'erro' => 'n'], 200);
@@ -44,6 +39,7 @@ class ProfessorController extends Controller
             'id' => 'required|integer',
         ]);
         $professor = Professor::find($request->id);
+        $professor->Usuario;
         if ($professor) {
             return response()->json(['professor' => $professor, 'erro' => 'n'], 200);
         } else {
@@ -68,9 +64,7 @@ class ProfessorController extends Controller
     public function alterar_usuario(Request $request){
         $request->validate([
             'id' => 'required|integer|exists:usuario,id',
-            'nome' => 'required|string|max:255',
-            'email' => 'required|required|email|max:255',
-            'senha' => 'required|string',
+            'materia' => 'required|string|max:255'
         ]);
 
 
@@ -84,9 +78,7 @@ class ProfessorController extends Controller
                     return response()->json(['message' => 'Email já cadastrado para outro usuário!', 'erro' => 's'], 200);
                 }
             }
-            $usuario->nome = $request->nome;
-            $usuario->email = $request->email; 
-            $usuario->senha = Hash::make($request->senha);
+            $usuario->materia = $request->materia;
             $usuario->save();
 
             return response()->json(['message' => 'Dados alterado com sucesso!', 'erro' => 'n'], 200);
@@ -113,4 +105,5 @@ class ProfessorController extends Controller
             return response()->json(['message' => 'Erro ao deletar usuário!', 'erro' => 's', 'msg erro' => $th->getMessage()], 200);
         }
     }
+    
 }

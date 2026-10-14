@@ -65,14 +65,14 @@ class UsuarioController extends Controller
         return response()->json(['usuarios' => $usuarios, 'erro' => 'n'], 200);
     }
 
-    public function alterar_usuario(Request $request){
+    public function alterar_usuario(Request $request)
+    {
         $request->validate([
             'id' => 'required|integer|exists:usuario,id',
             'nome' => 'required|string|max:255',
             'email' => 'required|required|email|max:255',
             'senha' => 'required|string',
         ]);
-
 
         try {
 
@@ -85,7 +85,7 @@ class UsuarioController extends Controller
                 }
             }
             $usuario->nome = $request->nome;
-            $usuario->email = $request->email; 
+            $usuario->email = $request->email;
             $usuario->senha = Hash::make($request->senha);
             $usuario->save();
 
@@ -112,5 +112,10 @@ class UsuarioController extends Controller
         } catch (\Throwable $th) {
             return response()->json(['message' => 'Erro ao deletar usuário!', 'erro' => 's', 'msg erro' => $th->getMessage()], 200);
         }
+    }
+
+    public function Professor()
+    {
+        return $this->hasOne(Professor::class, 'professor_id');
     }
 }
