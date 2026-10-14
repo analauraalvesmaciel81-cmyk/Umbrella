@@ -24,4 +24,4 @@ Route::get('/listar_professores', [ProfessorController::class, 'listar_professor
 Route::post('/cadastro_aluno', [AlunoController::class, 'salvar_aluno']);
 Route::get('/ver_aluno', [AlunoController::class, 'ver_aluno']);
 Route::get('/listar_alunos', [AlunoController::class, 'listar_alunos']);
-Route::get('/ver_professores', [ProfessorController::class, 'ver_professores'])->name('ver_professores');
+

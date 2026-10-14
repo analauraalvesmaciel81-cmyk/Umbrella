@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('professor', function (Blueprint $table) {
             $table->id();
             $table->string('materia', 100);
-            $table->unsignedBigInteger('professor_id');
-            $table->foreign('professor_id')->references('id')->on('usuario')->onDelete('cascade');
+            $table->unsignedBigInteger('usuario_id');
+            $table->foreign('usuario_id')->references('id')->on('usuario')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,8 +26,8 @@ return new class extends Migration
     public function down(): void
     {
        Schema::table('professor', function (Blueprint $table) {
-            $table->dropForeign(['professor_id']);
-            $table->dropColumn('professor_id');
+            $table->dropForeign(['usuario_id']);
+            $table->dropColumn('usuario_id');
         });
         
         Schema::dropIfExists('professor');

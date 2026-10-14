@@ -39,8 +39,9 @@ class ProfessorController extends Controller
             'id' => 'required|integer',
         ]);
         $professor = Professor::find($request->id);
-        $professor->Usuario;
+       
         if ($professor) {
+             $professor->Usuario;
             return response()->json(['professor' => $professor, 'erro' => 'n'], 200);
         } else {
             return response()->json(['message' => 'Professor não encontrado!', 'erro' => 's'], 200);
