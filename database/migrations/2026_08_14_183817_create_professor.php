@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('professor', function (Blueprint $table) {
             $table->id();
-            $table->string('materia', 100);
-            $table->unsignedBigInteger('usuario_id');
-            $table->foreign('usuario_id')->references('id')->on('usuario')->onDelete('cascade');
+            $table->string('nome');
+            $table->string('email')->unique();
+            $table->text('senha');
+            $table->integer('nif');
             $table->timestamps();
         });
     }
@@ -24,12 +25,7 @@ return new class extends Migration
      * Reverse the migrations.
      */
     public function down(): void
-    {
-       Schema::table('professor', function (Blueprint $table) {
-            $table->dropForeign(['usuario_id']);
-            $table->dropColumn('usuario_id');
-        });
-        
+    {    
         Schema::dropIfExists('professor');
     }
 };

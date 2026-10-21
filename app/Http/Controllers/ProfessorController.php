@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Professor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class ProfessorController extends Controller
 {
@@ -12,17 +13,24 @@ class ProfessorController extends Controller
         return view('reserva_professor');
     }
 
-    public function salvar_professor(Request $request)
+    public function cadastrar_professor(Request $request)
     {
 
+       
         $request->validate([
-            'materia' => 'required|string|max:255'
+            'nome' => 'required|string|max:255',
+            'email' => 'required|email|unique:professor',
+            'senha' => 'required|string|max:8',
+            'nif' => 'required|string|max:9'
         ]);
 
         try {
 
             $professor = new Professor;
-            $professor->materia = $request->materia;
+            $professor->nome = $request->nome;
+            $professor->email = $request->email;
+            $professor->senha = Hash::make($request->senha);
+            $professor->nif = $request->nif;
             $professor->save();
 
             return response()->json(['message' => 'Professor cadastrado com sucesso!', 'erro' => 'n'], 200);
@@ -55,32 +63,38 @@ class ProfessorController extends Controller
         return response()->json(['professores' => $professores , 'erro' => 'n'], 200);
     }
 
-    public function listar_usuarios_simples(Request $request)
+    public function listar_professores_simples(Request $request)
     {
-        $usuarios = Usuario::select('nome', 'email')->get();
+        $professores = Professor::select('nome', 'email')->get();
 
-        return response()->json(['usuarios' => $usuarios, 'erro' => 'n'], 200);
+        return response()->json(['professores' => $professores, 'erro' => 'n'], 200);
     }
 
-    public function alterar_usuario(Request $request){
+    public function alterar_professor(Request $request){
         $request->validate([
-            'id' => 'required|integer|exists:usuario,id',
-            'materia' => 'required|string|max:255'
+            'id' => 'required|integer',
+            'nome' => 'required|string|max:255',
+            'email' => 'required|required|email|max:255',
+            'senha' => 'required|string',
+            'nif' => 'required|integer'
         ]);
 
 
         try {
 
-            $usuario = Usuario::find($request->id);
+            $professor = Professor::find($request->id);
 
-            if ($usuario->email !== $request->email) {
-                $usuario_email_igual = Usuario::where('email', $request->email)->first();
-                if ($usuario_email_igual) {
+            if ($professor->email !== $request->email) {
+                $professor_email_igual = Professor::where('email', $request->email)->first();
+                if ($professor_email_igual) {
                     return response()->json(['message' => 'Email já cadastrado para outro usuário!', 'erro' => 's'], 200);
                 }
             }
-            $usuario->materia = $request->materia;
-            $usuario->save();
+            $professor->nome = $request->nome;
+            $professor->email = $request->email;
+            $professor->senha = $request->senha;
+            $professor->nif = $request->nif;
+            $professor->save();
 
             return response()->json(['message' => 'Dados alterado com sucesso!', 'erro' => 'n'], 200);
 
@@ -90,15 +104,15 @@ class ProfessorController extends Controller
 
     }
 
-    public function deletar_usuario(Request $request)
+    public function deletar_professor(Request $request)
     {
         $request->validate([
-            'id' => 'required|integer|exists:usuario,id',
+            'id' => 'required|integer',
         ]);
 
         try {
-            $usuario = Usuario::find($request->id);
-            $usuario->delete();
+            $professor = Professor::find($request->id);
+            $professor->delete();
 
             return response()->json(['message' => 'Usuário deletado com sucesso!', 'erro' => 'n'], 200);
 

@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('aluno', function (Blueprint $table) {
             $table->id();
-            $table->string('turma', 100);
-            $table->string('materia', 100);
-            $table->unsignedBigInteger('aluno_id');
-            $table->foreign('aluno_id')->references('id')->on('usuario')->onDelete('cascade');
+            $table->string('nome');
+            $table->string('email')->unique();
+            $table->text('senha');
+            $table->string('turma');
+            $table->integer('rm');
             $table->timestamps();
         });
     }
@@ -26,11 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-       Schema::table('aluno', function (Blueprint $table) {
-            $table->dropForeign(['aluno_id']);
-            $table->dropColumn('aluno_id');
-        });
-        
         Schema::dropIfExists('aluno');
     }
 };

@@ -9,8 +9,10 @@ class Aluno extends Model
     protected $table = 'aluno';
 
     protected $fillable = [
+        'nome',
+        'email',
+        'senha',
         'turma',
-        'materia',
-        'aluno_id',
+        'rm'
     ];
 }
