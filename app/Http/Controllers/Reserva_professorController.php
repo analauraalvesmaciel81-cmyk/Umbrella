@@ -1,10 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Models;
 
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 
-class Reserva_professorController extends Controller
+class Reserva_professor extends Model
 {
-    //
+    protected $table = 'reserva_professor';
+
+    protected $fillable = [
+        'nome_professor',
+        'materia',
+        'nome_alunos',
+        'horario_inicio',
+        'horario_fim',
+        'data_utilizacao',
+        'turma',
+        'descricao'
+    ];
 }

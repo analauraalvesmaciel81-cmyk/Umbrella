@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\AlunoController;
+use App\Http\Controller\Reserva_professorController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -21,4 +22,9 @@ Route::get('/listar_professores', [ProfessorController::class, 'listar_professor
 Route::get('/listar_professores_simples', [ProfessorController::class, 'listar_professores_simples']);
 Route::put('/alterar_professor', [ProfessorController::class, 'alterar_professor']);
 Route::delete('/deletar_professor', [ProfessorController::class, 'deletar_professor']);
+
+Route::post('/cadastrar_reserva_professor', [Reserva_professorController::class, 'cadastrar_reserva_professor']);
+Route::get('/listar_reserva_professores', [Reserva_professorController::class, 'listar_reserva_professores']);
+Route::put('/alterar_reserva_professor', [Reserva_professorController::class, 'alterar_reserva_professor']);
+Route::delete('/deletar_reserva_professor', [Reserva_professorController::class, 'deletar_reserva_professor']);
 

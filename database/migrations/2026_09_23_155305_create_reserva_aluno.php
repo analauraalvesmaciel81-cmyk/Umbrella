@@ -12,13 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('reserva_aluno', function (Blueprint $table) {
-            $table->id();
+            $table->id(); 
+            $table->unsignedBigInteger('aluno_id');
+            $table->foreign('aluno_id')->references('id')->on('aluno')->onDelete('cascade');
             $table->unsignedBigInteger('reserva_id');
             $table->foreign('reserva_id')->references('id')->on('reservas')->onDelete('cascade');
-            $table->unsignedBigInteger('aluno_reserva_id');
-            $table->foreign('aluno_reserva_id')->references('id')->on('aluno')->onDelete('cascade');
-            $table->timestamps();
-        });
+            $table->string('nome_professor_responsavel');
+            $table->string('nome_alunos');
+            $table->string('turma');
+            $table->string('materia');
+            $table->date('data_reserva');
+            $table->time('hora_inicio');
+            $table->time('hora_fim');
+            $table->text('descricao');
+            $table->timestamps();        
+            });
     }
 
     /**

@@ -9,7 +9,13 @@ class Reserva_aluno extends Model
     protected $table = 'reserva_aluno';
 
     protected $fillable = [
-        'reserva_id',
-        'aluno_reserva_id',
+        'nome_professor_responsavel',
+        'materia',
+        'horario_inicio',
+        'horario_fim',
+        'data_utilizacao',
+        'turma',
+        'descricao'
+
     ];
 }

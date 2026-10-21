@@ -9,12 +9,9 @@ class Reservas extends Model
     protected $table = 'reservas';
 
     protected $fillable = [
-        'nome',
-        'turma',
-        'materia',
-        'data_reserva',
-        'hora_inicio',
-        'hora_fim',
-        'descricao',
+        'nome_1',
+        'nome_2',
+        'nome_3',
+        'nome_4'
     ];
 }

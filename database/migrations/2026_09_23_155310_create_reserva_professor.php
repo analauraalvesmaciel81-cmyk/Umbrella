@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('reserva_professor', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('reserva_professor_id');
-            $table->foreign('reserva_professor_id')->references('id')->on('reservas')->onDelete('cascade');
-            $table->string('quantidade de alunos', 4);
+            $table->string('nome_professor');
+            $table->string('turma');
+            $table->string('materia');
+            $table->date('data_reserva');
+            $table->time('hora_inicio');
+            $table->time('hora_fim');
+            $table->text('descricao');
             $table->timestamps();
         });
     }
