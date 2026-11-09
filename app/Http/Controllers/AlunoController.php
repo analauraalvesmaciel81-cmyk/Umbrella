@@ -108,4 +108,49 @@ class AlunoController extends Controller
             return response()->json(['message' => 'Erro ao deletar aluno!', 'erro' => 's', 'msg erro' => $th->getMessage()], 200);
         }
     }
+    public function login_aluno(Request $request)
+    {
+        $request->validate([
+            'email' => 'required',
+            'senha' => 'required',
+        ]);
+
+        $aluno = Aluno::where('email', $request->email)->first();
+
+        if ($aluno) {
+            if ($aluno->senha == md5($request->senha)) {
+                $aluno_token = new AlunoToken;
+                $aluno_token->aluno_id = $aluno->id;
+                $aluno_token->token = Hash::make($aluno->id.$aluno->email.now());
+                $aluno_token->valido_ate = now()->addDays(10);
+
+                $aluno_token->save();
+
+                return response()->json(['message' => 'Login realizado com sucesso!', 'erro' => 'n', 'token' => $aluno_token->token], 200);
+            } else {
+                return response()->json(['message' => 'Usuario ou Senha incorretos!', 'erro' => 's'], 200);
+
+            }
+        } else {
+            return response()->json(['message' => 'Usuario não encontrado!', 'erro' => 's'], 200);
+        }
+    }
+    
+    public function logout_aluno(Request $request)
+    {
+        $request->validate([
+            'aluno_id' => 'required|integer|exists:aluno,id',
+        ]);
+
+        try {
+            $aluno_token = AlunoToken::where('aluno_id', $request->aluno_id)->first();
+            $aluno_token->delete();
+
+            return response()->json(['message' => 'Token deletado com sucesso!', 'erro' => 'n'], 200);
+
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Erro ao deletar token!', 'erro' => 's', 'msg erro' => $th->getMessage()], 200);
+        }
+    }
 }
+

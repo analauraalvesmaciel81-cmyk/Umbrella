@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->string('email')->unique();
-            $table->text('senha');
+            $table->text('senha'); 
             $table->string('turma');
             $table->integer('rm');
             $table->timestamps();
