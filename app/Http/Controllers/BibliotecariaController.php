@@ -58,7 +58,7 @@ class BibliotecariaController extends Controller
 
                 $bibliotecaria_token->save();
 
-                return response()->json(['message' => 'Login realizado com sucesso!', 'erro' => 'n', 'token' => $bibliotecaria_token->token], 200);
+                return response()->json(['message' => 'Login realizado com sucesso!', 'erro' => 'n', 'token' => $bibliotecaria_token->token, "bibliotecaria_id" => $bibliotecaria->id], 200);
             } else {
                 return response()->json(['message' => 'Usuario ou Senha incorretos!', 'erro' => 's'], 200);
 

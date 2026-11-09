@@ -126,7 +126,7 @@ class AlunoController extends Controller
 
                 $aluno_token->save();
 
-                return response()->json(['message' => 'Login realizado com sucesso!', 'erro' => 'n', 'token' => $aluno_token->token], 200);
+                return response()->json(['message' => 'Login realizado com sucesso!', 'erro' => 'n', 'token' => $aluno_token->token, "aluno_id" => $aluno->id], 200);
             } else {
                 return response()->json(['message' => 'Usuario ou Senha incorretos!', 'erro' => 's'], 200);
 
