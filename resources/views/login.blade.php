@@ -22,8 +22,8 @@
 </head>
 
 <body
-    style="background-image: url('loginfundo.jpeg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
-    <div class="container"> 
+    style="background-image: url('fundologin.png'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
+    <div class="container">
         <div class="col-8 border border-tertiary rounded p-4 mb-5 bg-body-primary"
             style="margin-left: 220px; margin-top: 50px; height: 600px; background-color: rgba(255, 255, 255, 0.9);">
             <div class="justify-content-center d-flex"
@@ -41,13 +41,19 @@
                     <label for="senha" class="form-label">Senha</label>
                     <input type="password" class="form-control" id="senha" aria-describedby="senhaHelp">
                 </div>
-                <button type="button" class="btn-outline-light" style="margin-left: 310px;" id="entrar">Entrar</button>
-                <button class="btn-solid btn-styled theme-info">Esqueci a senha</button>
+                <button type="button" class="btn btn-outline-dark" style="margin-left: 310px;"
+                    id="entrar">Entrar</button>
+                <button class="btn btn-outline-dark">Esqueci a senha</button>
             </div>
         </div>
     </div>
 
-
+    <div class="justify-content-start d-flex" style="height: 40px; width: 150px;">
+        <img src="logo_umbrella.png" class="img-thumbnail p-2" alt="...">
+    </div>
+    <div>
+        <h6 class="fonte" style="margin-left: 43px; margin-top: -29px; color: white;">Umbrella</h6>
+    </div>  
 </body>
 
 </html>

@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Hash;
 
 class BibliotecariaController extends Controller
 {
-    public function bibliotecaria_html(Request $request)
+    public function painel_bibliotecaria(Request $request)
     {
-        return view('bibliotecaria');
+        return view('home');
     }
 
     public function cadastrar_bibliotecaria(Request $request)

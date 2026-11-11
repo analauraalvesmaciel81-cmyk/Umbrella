@@ -13,6 +13,9 @@ $(document).ready(function () {
                 icon: 'error',
                 title: 'Erro',
                 text: 'Por favor, preencha todos os campos.',
+                cofirmButtonText: 'OK',
+                confirmButtonColor: '#E40520',
+                alertcolor: '#e405bb',
             });
             return;
         }
@@ -28,6 +31,17 @@ $(document).ready(function () {
             return;
         }
 
+        var email = $('#email').val();
+        console.log(email);
+        if (!email.includes('@') || !email.includes('.')) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Erro',
+                text: 'Por favor, insira um e-mail válido.',
+            });
+            return;
+        }
+
         $.ajax({
             url: '../api/login_professor',
             type: 'POST',
@@ -35,20 +49,23 @@ $(document).ready(function () {
                 email: $('#email').val(),
                 senha: $('#senha').val()
             },
+
             success: function (response) {
                 if (response.erro == 'n') {
                     alert(response.token);
                     $.cookie('token', response.token, { expires: 7 });
                     $.cookie('professor_id', response.professor_id, { expires: 7 });
+
                     setTimeout(function () {
                         window.location.href = '../home';
-                    }, 3000);
+                    }, 2000);
+
 
                 } else {
                     Swal.fire({
                         icon: 'error',
                         title: 'Erro',
-                        text: 'response.mensagem'
+                        text: 'E-mail ou senha incorretos. Por favor, tente novamente.'
                     });
                 }
             },
@@ -56,7 +73,7 @@ $(document).ready(function () {
                 Swal.fire({
                     icon: 'error',
                     title: 'Erro',
-                    text: 'Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente mais tarde.'
+                    text: 'Ocorreu um erro ao processar seu login. Por favor, tente novamente mais tarde.'
                 });
             }
         })
@@ -76,22 +93,8 @@ $(document).ready(function () {
                         text: response.token
                         
                     });
-
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Erro',
-                        text: 'response.mensagem'
-                    });
                 }
             },
-            error: function () {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro',
-                    text: 'Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente mais tarde.'
-                });
-            }
         })
 
         $.ajax({
@@ -113,7 +116,7 @@ $(document).ready(function () {
                     Swal.fire({
                         icon: 'error',
                         title: 'Erro',
-                        text: 'response.mensagem'
+                        text: 'Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente mais tarde.'
                     });
                 }
             },

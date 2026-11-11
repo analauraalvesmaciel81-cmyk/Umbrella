@@ -6,8 +6,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\ProfessorToken;
-use Illuminate\Support\Facades\Hash;
 use App\Models\Professor;
+use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 
 class LoginApiMiddleware
