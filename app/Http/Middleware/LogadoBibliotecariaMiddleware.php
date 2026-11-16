@@ -2,15 +2,18 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 use App\Models\Professor;
 use App\Models\ProfessorToken;
 use App\Models\Bibliotecaria;
 use App\Models\BibliotecariaToken;
-use Carbon\Carbon;
-use Closure;
-use Illuminate\Http\Request;
+use App\Controllers\HomeController;
+use App\Controllers\BibliotecariaController;
 use Illuminate\Support\Facades\Cookie;
-use Symfony\Component\HttpFoundation\Response;
+use Carbon\Carbon;
+
 
 class LogadoBibliotecariaMiddleware
 {
@@ -21,39 +24,31 @@ class LogadoBibliotecariaMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Cookie::has('professor_id') && Cookie::has('token')) {
-            $professor_id = Cookie::get('professor_id');
+        if (Cookie::has('bibliotecaria_id') && Cookie::has('token')) {
+            $bibliotecaria_id = Cookie::get('bibliotecaria_id');
             $token = Cookie::get('token');
-            $token_professor = ProfessorToken::where('professor_id', $professor_id)
+            $token_biblioteca = BibliotecariaToken::where('id', $bibliotecaria_id)
                 ->where('token', $token)
                 ->where('valido_ate', '>', Carbon::now())
                 ->first();
-            if ($token_professor) {
-                $professor = Professor::find($professor_id);
-                $request->professor = $professor;
-                $bibliotecaria = Bibliotecaria::where('professor_id', $professor_id)->first();
+            if ($token_biblioteca) {
+                $bibliotecaria = Bibliotecaria::find($bibliotecaria_id);
+                $request->bibliotecaria = $bibliotecaria;
+                $request->sou_bibliotecaria = "S";
                 if ($bibliotecaria) {
                     return $next($request);
                 } else {
-                    Cookie::forget('professor_id');
+                    Cookie::forget('bibliotecaria_id');
                     Cookie::forget('token');
                     return redirect()->route('login');
                 }
+            }
 
                 return $next($request);
             } else {
-                Cookie::forget('professor_id');
+                Cookie::forget('bibliotecaria_id');
                 Cookie::forget('token');
-
                 return redirect()->route('login');
             }
-
-            return $next($request);
-        } else {
-            Cookie::forget('professor_id');
-            Cookie::forget('token');
-
-            return redirect()->route('login');
-        }
-    }
+     }
 }

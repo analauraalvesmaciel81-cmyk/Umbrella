@@ -9,7 +9,6 @@ use App\Models\BibliotecariaToken;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Bibliotecaria;
 use Carbon\Carbon;
-
 class BibliotecariaApiMiddleware
 {
     /**
@@ -25,12 +24,19 @@ class BibliotecariaApiMiddleware
             ->where("valido_ate", ">=", Carbon::now())
             ->first();
             if($token){
+                $bibliotecaria = Biblioteca::find($bibliotecaria_id);
+                $request->bibliotecaria = $bibliotecaria;
+
+                $request->sou_bibliotecaria="S";
                 return $next($request);
-            }
+            } 
 
         return response()->json(['message' => 'Token inválido ou expirado', 'erro' => 's'], 200);
         }else{
             return response()->json(['message' => 'Token não fornecido', 'erro' => 's'], 200);
+
+                $request->bibliotecaria="S";
+                return $next($request);
         }
     }
 }

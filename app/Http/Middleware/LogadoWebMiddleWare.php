@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\ProfessorToken;
 use App\Models\Professor;
+use App\Models\Bibliotecaria;
 use App\Controllers\HomeController;
 use App\Controllers\BibliotecariaController;
 use Illuminate\Support\Facades\Cookie;
@@ -31,12 +32,10 @@ class LogadoWebMiddleWare
                 if($token_professor){
                     $professor = Professor::find($professor_id);
                     $request->professor = $professor;
-                    $bibliotecaria = Bibliotecaria::where('professor_id', $professor_id)->first();
-                    if($bibliotecaria){
-                        $request->bibliotecaria = 'S';
-                    }else{
-                        $request->bibliotecaria = 'N';
-                    }
+                    
+                    
+                    $request->sou_bibliotecaria = 'N';
+                    
                     return $next($request);
                 }else{
                     Cookie::forget('professor_id');

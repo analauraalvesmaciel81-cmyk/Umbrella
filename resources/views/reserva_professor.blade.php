@@ -13,6 +13,8 @@
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
     </script>
 
+    @vite('resources/js/cadastro_professor.js')
+
 </head>
 
 <body>
@@ -96,7 +98,8 @@
             <label for="exampleFormControlInput1" class="form-label">Horario Fim</label>
             <div class="row">
                 <div class="col-8">
-                    <input type="text" class="form-control" placeholder="Horário de fim" aria-label="Horário de fim">
+                    <input type="text" class="form-control" placeholder="Horário de fim"
+                        aria-label="Horário de fim">
                 </div>
             </div>
         </div>

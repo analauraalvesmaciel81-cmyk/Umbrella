@@ -52,14 +52,17 @@ $(document).ready(function () {
 
             success: function (response) {
                 if (response.erro == 'n') {
-                    alert(response.token);
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Token gerado com sucesso!',
+                        text: response.token
+                    });
                     $.cookie('token', response.token, { expires: 7 });
                     $.cookie('professor_id', response.professor_id, { expires: 7 });
 
                     setTimeout(function () {
                         window.location.href = '../home';
                     }, 2000);
-
 
                 } else {
                     Swal.fire({
@@ -69,65 +72,6 @@ $(document).ready(function () {
                     });
                 }
             },
-            error: function () {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro',
-                    text: 'Ocorreu um erro ao processar seu login. Por favor, tente novamente mais tarde.'
-                });
-            }
         })
-
-        $.ajax({
-            url: '../api/login_aluno',
-            type: 'POST',
-            data: {
-                email: $('#email').val(),
-                senha: $('#senha').val()
-            },
-            success: function (response) {
-                if (response.erro == 'n') {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Token gerado com sucesso!',
-                        text: response.token
-                        
-                    });
-                }
-            },
-        })
-
-        $.ajax({
-            url: '../api/login_professor',
-            type: 'POST',
-            data: {
-                email: $('#email').val(),
-                senha: $('#senha').val()
-            },
-            success: function (response) {
-                if (response.erro == 'n') {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Token gerado com sucesso!',
-                        text: response.token
-                    });
-
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Erro',
-                        text: 'Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente mais tarde.'
-                    });
-                }
-            },
-            error: function () {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Erro',
-                    text: 'Ocorreu um erro ao processar sua solicitação. Por favor, tente novamente mais tarde.'
-                });
-            }
-        })
-
     });
 });  

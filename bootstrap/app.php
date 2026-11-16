@@ -16,6 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
             $middleware->encryptCookies(except: [
             'professor_id',
             'token',
+            'bibliotecaria_id'
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

@@ -6,7 +6,9 @@ use App\Http\Controllers\ProfessorController;
 use App\Http\Controllers\AlunoController;
 use App\Http\Controller\Reserva_professorController;
 use App\Http\Controllers\BibliotecariaController;
+use App\Http\Controllers\LoginBiblioteca;
 use App\Http\Middleware\LoginApiMiddleware;
+use App\Http\Middleware\BibliotecariaApiMiddleware;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
