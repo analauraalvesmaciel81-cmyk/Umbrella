@@ -84,4 +84,14 @@ class BibliotecariaController extends Controller
             return response()->json(['message' => 'Erro ao deletar token!', 'erro' => 's', 'msg erro' => $th->getMessage()], 200);
         }
     }
+    
+    public function tabela_html(Request $request){
+
+        $dados = Professor::select('professor.nome', 'professor.email', 'professor.nif', 'aluno.nome')
+        ->join('bibliotecaria', 'professor_id', '=', 'bibliotecaria.professor_id')
+        ->get();
+
+            return view('reservas_bibliotecaria')->with('dados', $dados);
+    }
+
 }

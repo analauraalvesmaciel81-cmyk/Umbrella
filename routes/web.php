@@ -9,9 +9,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BibliotecariaController;
 use App\Http\Controllers\LoginBibliotecariaController;
 use App\Http\Controllers\HomeBibliotecariaController;
+use App\Http\Controllers\PaginaUsuarioController;
+use App\Http\Controllers\ReservaProfessorController;
 use App\Http\Middleware\LogadoWebMiddleWare;
 use App\Http\Middleware\LogadoBibliotecariaMiddleware;
 
+ 
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,5 +25,8 @@ Route::get('/reserva_aluno', [AlunoController::class, 'aluno_html'])->name('rese
 Route::get('/login', [LoginController::class, 'login_html'])->name('login');
 Route::get('/home', [HomeController::class, 'mostrarHome'])->middleware(LogadoWebMiddleWare::class)->name('home');
 Route::get('/painel_bibliotecaria', [BibliotecariaController::class, 'mostrarBibliotecaria'])->middleware(LogadoBibliotecariaMiddleware::class)->name('painel_bibliotecaria');
-Route::get('/login_bibliotecaria', [LoginBibliotecariaController::class, 'loginbibliotecaria_html'])->name('login_bibliotecaria');
+Route::get('/login_bibliotecaria', [LoginBibliotecariaConmtroller::class, 'loginbibliotecaria_html'])->name('login_bibliotecaria');
 Route::get('/home_bibliotecaria', [HomeBibliotecariaController::class, 'mostrarHomeBibliotecaria'])->middleware(LogadoBibliotecariaMiddleWare::class)->name('home_bibliotecaria');
+Route::get('/pagina_usuario', [PaginaUsuarioController::class, 'pagina_html'])->name('pagina_usuario');
+Route::get('/tabela', [BibliotecariaController::class, 'tabela_html'])->name('pagina_usuario')->middleware(LogadoBibliotecariaMiddleWare::class)->name('reservas_bibliotecaria');
+
