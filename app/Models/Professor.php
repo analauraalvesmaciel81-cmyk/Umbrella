@@ -12,7 +12,8 @@ class Professor extends Model
         'nome',
         'email',
         'senha',
-        'nif'
+        'nif',
+        'imagem'
     ];
 
 }

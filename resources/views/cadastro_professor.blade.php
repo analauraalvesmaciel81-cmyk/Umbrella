@@ -101,6 +101,10 @@
                 <textarea class="form-control" aria-label="With textarea"></textarea>
             </div>
         </div>
+        <div class="form-field">
+            <label for="formFile" class="form-label">Default file input example</label>
+            <input class="form-control" type="file" id="formFile">
+        </div>  
     </div>
     <div class="d-flex justify-content-center" style="margin-top: -20px; margin-bottom: 20px;">
         <button type="button" class="btn btn-outline-dark justify-content-center">Reservar</button>
@@ -111,6 +115,7 @@
     <div>
         <h6 class="fonte" style="margin-left: 43px; margin-top: -29px;">Umbrella</h6>
     </div>
+
 
 </body>
 

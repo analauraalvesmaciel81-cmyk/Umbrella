@@ -22,10 +22,10 @@ class ProfessorController extends Controller
             'email' => 'required|email|unique:professor',
             'senha' => 'required|string|max:8',
             'nif' => 'required|string|max:9',
+            'imagem' => 'required|string|'
         ]);
 
         try {
-
             $professor = new Professor;
             $professor->nome = $request->nome;
             $professor->email = $request->email;
