@@ -11,7 +11,7 @@ class ProfessorController extends Controller
 {
     public function professor_html(Request $request)
     {
-        return view('reserva_professor');
+        return view('cadastro_professor');
     }
 
     public function cadastrar_professor(Request $request)

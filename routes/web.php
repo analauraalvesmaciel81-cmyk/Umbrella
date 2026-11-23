@@ -22,6 +22,7 @@ Route::get('/', function () {
 Route::get('/cadastro_usuario', [UsuarioController::class, 'cadastro_html'])->name('cadastro_usuario');
 Route::get('/cadastro_professor', [ProfessorController::class, 'professor_html'])->name('cadastro_professor');
 Route::get('/reserva_aluno', [AlunoController::class, 'aluno_html'])->name('reserva_aluno');
+Route::get('/reserva_professor', [ProfessorController::class, 'reservaprofessor_html'])->name('reserva_professor');
 Route::get('/login', [LoginController::class, 'login_html'])->name('login');
 Route::get('/home', [HomeController::class, 'mostrarHome'])->middleware(LogadoWebMiddleWare::class)->name('home');
 Route::get('/painel_bibliotecaria', [BibliotecariaController::class, 'mostrarBibliotecaria'])->middleware(LogadoBibliotecariaMiddleware::class)->name('painel_bibliotecaria');
