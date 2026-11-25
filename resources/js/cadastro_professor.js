@@ -38,9 +38,9 @@ $(document).ready(function () {
         let file = $('imagem')[0].files[0];
         if (file && file.size > 100000000) {
             Swal.fire({
-                icon:"warning",
-                title:"Imagem muito grande",
-                text:"A imagem deve conter no maximo 100 MB"
+                icon: "warning",
+                title: "Imagem muito grande",
+                text: "A imagem deve conter no maximo 100 MB"
             })
             return;
         }
@@ -50,10 +50,10 @@ $(document).ready(function () {
             formData.append("imagem", file);
         }
 
-        formData.append("nome", $("#nome").vak=l());
-        formData.append("email", $("#email").vak=l());
-        formData.append("senha", $("#senha").vak=l());
-        formData.append("nif", $("#nif").vak=l());
+        formData.append("nome", $("#nome").vak = l());
+        formData.append("email", $("#email").vak = l());
+        formData.append("senha", $("#senha").vak = l());
+        formData.append("nif", $("#nif").vak = l());
         formData.append("professor_id", professor_id);
         formData.append("token", token);
 
@@ -86,10 +86,41 @@ $(document).ready(function () {
                             title: 'Erro',
                             text: 'E-mail ou senha incorretos. Por favor, tente novamente.'
                         });
+
                     }
                 }
             }
         })
+        $.ajax({
+            type: 'PUT',
+            url: '../api/',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function (response) {
+                if (response.erro == 'n') {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Token gerado com sucesso!',
+                        text: response.token
+                    });
+                    $.cookie('token', response.token, { expires: 7 });
+                    $.cookie('bibliotecaria_id', response.bibliotecaria_id, { expires: 7 });
 
+                    setTimeout(function () {
+                        window.location.href = '../home_bibliotecaria';
+                    }, 2000);
+
+                    if (response.erro == 's') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Erro',
+                            text: 'E-mail ou senha incorretos. Por favor, tente novamente.'
+                        });
+
+                    }
+                }
+            }
+        })
     });
 });  

@@ -61,6 +61,36 @@
                 d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
         </svg>
     </div>
+    <div class="container">
+        <div class="form-field">
+            <label for="exampleFormControlInput" class="form-label mb-2">Email address</label>
+            <input type="email" class="form-control" id="exampleFormControlInput" placeholder="name@example.com">
+            <label for="exampleFormControlInput" class="form-label mb-2">Email address</label>
+            <input type="email" class="form-control" id="exampleFormControlInput" placeholder="name@example.com">
+            <label for="exampleFormControlInput" class="form-label mb-2">Email address</label>
+            <input type="email" class="form-control" id="exampleFormControlInput" placeholder="name@example.com">
+            <label for="exampleFormControlInput" class="form-label mb-2">Email address</label>
+            <input type="email" class="form-control" id="exampleFormControlInput" placeholder="name@example.com">
+            <label for="exampleFormControlInput" class="form-label mb-2">Email address</label>
+            <input type="email" class="form-control" id="exampleFormControlInput" placeholder="name@example.com">
+            <div class="form-field">
+                <label for="formFile" class="form-label">Default file input example</label>
+                <input class="form-control" type="file" id="formFile">
+            </div>
+            <button class="btn-solid btn-styled theme-inverse" id="alterar">Inverse</button>
+        </div>
+    </div>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">xx</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+</table>
 </body>
 
 </html>

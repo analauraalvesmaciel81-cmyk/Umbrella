@@ -22,10 +22,19 @@ class ProfessorController extends Controller
             'email' => 'required|email|unique:professor',
             'senha' => 'required|string|max:8',
             'nif' => 'required|string|max:9',
-            'imagem' => 'required|string|'
+            'imagem' => 'nullable',
         ]);
 
         try {
+
+            $professor = new Professor;
+
+            if ($request->hasFile('imagem')) {
+                $imagem = $request->file('imagem');
+                $caminho = $imagem->store('public', 'imagem');
+                $professor->imagem = $caminho;
+
+            }
             $professor = new Professor;
             $professor->nome = $request->nome;
             $professor->email = $request->email;
@@ -140,7 +149,7 @@ class ProfessorController extends Controller
 
                 $professor_token->save();
 
-                return response()->json(['message' => 'Login realizado com sucesso!', 'erro' => 'n', 'token' => $professor_token->token, "professor_id" => $professor->id], 200);
+                return response()->json(['message' => 'Login realizado com sucesso!', 'erro' => 'n', 'token' => $professor_token->token, 'professor_id' => $professor->id], 200);
             } else {
                 return response()->json(['message' => 'Usuario ou Senha incorretos!', 'erro' => 's'], 200);
 
